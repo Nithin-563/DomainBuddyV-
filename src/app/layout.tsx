@@ -18,9 +18,6 @@ export const metadata: Metadata = {
   title: "DomainBuddy — Find & Register Your Perfect Domain",
   description:
     "Search domain names, get AI-powered suggestions, and register domains through trusted partners.",
-  other: {
-    "impact-site-verification": "53b8bfe3-3dd1-434f-9592-1f212631a0ff",
-  },
 }
 
 export default function RootLayout({
@@ -34,12 +31,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-black text-white">
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "(function(){var m=document.createElement('meta');m.name='impact-site-verification';m.setAttribute('value','53b8bfe3-3dd1-434f-9592-1f212631a0ff');document.head.appendChild(m)})()",
-          }}
-        />
+        <span style={{ display: "none" }}>
+          Impact-Site-Verification: 53b8bfe3-3dd1-434f-9592-1f212631a0ff
+        </span>
         <Providers>
           <Navbar />
           {children}
