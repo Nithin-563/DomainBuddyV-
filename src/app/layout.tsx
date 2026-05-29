@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "DomainBuddy — Find & Register Your Perfect Domain",
   description:
     "Search domain names, get AI-powered suggestions, and register domains through trusted partners.",
+  other: {
+    "impact-site-verification": "53b8bfe3-3dd1-434f-9592-1f212631a0ff",
+  },
 }
 
 export default function RootLayout({
