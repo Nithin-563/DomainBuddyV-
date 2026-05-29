@@ -43,6 +43,8 @@ export default function Home() {
           register with trusted providers in seconds.
         </p>
 
+        <div className="sr-only">Impact-Site-Verification: 53b8bfe3-3dd1-434f-9592-1f212631a0ff</div>
+
         <DomainSearch />
 
         <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

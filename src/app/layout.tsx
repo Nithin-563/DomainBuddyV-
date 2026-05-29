@@ -31,9 +31,6 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-black text-white">
-        <span style={{ display: "none" }}>
-          Impact-Site-Verification: 53b8bfe3-3dd1-434f-9592-1f212631a0ff
-        </span>
         <Providers>
           <Navbar />
           {children}
