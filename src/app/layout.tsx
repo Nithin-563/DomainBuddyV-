@@ -34,6 +34,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-black text-white">
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var m=document.createElement('meta');m.name='impact-site-verification';m.setAttribute('value','53b8bfe3-3dd1-434f-9592-1f212631a0ff');document.head.appendChild(m)})()",
+          }}
+        />
         <Providers>
           <Navbar />
           {children}
