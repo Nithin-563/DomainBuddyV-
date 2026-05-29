@@ -57,3 +57,10 @@ CREATE POLICY "Users can insert own saved domains"
 DROP POLICY IF EXISTS "Users can delete own saved domains" ON saved_domains;
 CREATE POLICY "Users can delete own saved domains"
   ON saved_domains FOR DELETE USING (auth.uid() = user_id);
+
+-- Stripe subscription columns (run this separately if table already exists)
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS stripe_customer_id TEXT,
+  ADD COLUMN IF NOT EXISTS stripe_subscription_id TEXT,
+  ADD COLUMN IF NOT EXISTS stripe_plan TEXT DEFAULT 'free',
+  ADD COLUMN IF NOT EXISTS stripe_status TEXT DEFAULT 'inactive';
