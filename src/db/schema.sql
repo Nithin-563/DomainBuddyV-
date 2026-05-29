@@ -34,20 +34,26 @@ ALTER TABLE searches ENABLE ROW LEVEL SECURITY;
 ALTER TABLE saved_domains ENABLE ROW LEVEL SECURITY;
 
 -- Policies: users can only access their own data
+DROP POLICY IF EXISTS "Users can view own profile" ON profiles;
 CREATE POLICY "Users can view own profile"
   ON profiles FOR SELECT USING (auth.uid() = id);
 
+DROP POLICY IF EXISTS "Users can view own searches" ON searches;
 CREATE POLICY "Users can view own searches"
   ON searches FOR SELECT USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can insert own searches" ON searches;
 CREATE POLICY "Users can insert own searches"
   ON searches FOR INSERT WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can view own saved domains" ON saved_domains;
 CREATE POLICY "Users can view own saved domains"
   ON saved_domains FOR SELECT USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can insert own saved domains" ON saved_domains;
 CREATE POLICY "Users can insert own saved domains"
   ON saved_domains FOR INSERT WITH CHECK (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can delete own saved domains" ON saved_domains;
 CREATE POLICY "Users can delete own saved domains"
   ON saved_domains FOR DELETE USING (auth.uid() = user_id);
