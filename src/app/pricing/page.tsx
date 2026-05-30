@@ -41,8 +41,8 @@ const plans: Plan[] = [
   {
     name: "Starter",
     slug: "starter",
-    monthlyPrice: 9,
-    annualPrice: 90,
+    monthlyPrice: 299,
+    annualPrice: 2999,
     description: "For solo founders and side projects.",
     features: [
       "50 searches per day",
@@ -50,14 +50,15 @@ const plans: Plan[] = [
       "Save up to 20 domains",
       "Bulk check (5 at a time)",
       "7-day search history",
+      "Domain valuation",
     ],
     cta: "Subscribe",
   },
   {
     name: "Pro",
     slug: "pro",
-    monthlyPrice: 19,
-    annualPrice: 190,
+    monthlyPrice: 799,
+    annualPrice: 7999,
     description: "For serious domain investors.",
     highlighted: true,
     features: [
@@ -65,18 +66,18 @@ const plans: Plan[] = [
       "Unlimited AI suggestions",
       "Unlimited saved domains",
       "Bulk check (50 at a time)",
-      "Domain valuation",
-      "WHOIS lookup",
+      "Domain valuation + WHOIS",
       "1-year search history",
       "Priority support",
+      "Ad-free experience",
     ],
     cta: "Subscribe",
   },
   {
     name: "Enterprise",
     slug: "enterprise",
-    monthlyPrice: 49,
-    annualPrice: 490,
+    monthlyPrice: 1999,
+    annualPrice: 19999,
     description: "For agencies and teams.",
     features: [
       "Everything in Pro",
@@ -89,6 +90,10 @@ const plans: Plan[] = [
     cta: "Subscribe",
   },
 ]
+
+function formatINR(n: number): string {
+  return new Intl.NumberFormat("en-IN").format(n)
+}
 
 export default function PricingPage() {
   const { data: session } = useSession()
@@ -117,10 +122,7 @@ export default function PricingPage() {
       })
 
       const data = await res.json()
-
-      if (data.url) {
-        window.location.href = data.url
-      }
+      if (data.url) window.location.href = data.url
     } finally {
       setLoading(null)
     }
@@ -145,8 +147,7 @@ export default function PricingPage() {
           </h1>
 
           <p className="mx-auto mb-8 max-w-lg text-zinc-500">
-            Start free, upgrade when you need more. All plans include
-            affiliate purchase links.
+            Start free, upgrade when you need more. All prices in INR.
           </p>
 
           <div className="mb-10 inline-flex items-center gap-1 rounded-xl border border-white/10 bg-white/5 p-1">
@@ -169,7 +170,7 @@ export default function PricingPage() {
               }`}
             >
               Annual{" "}
-              <span className="ml-1 text-xs opacity-70">Save 17%</span>
+              <span className="ml-1 text-xs opacity-70">Save ~17%</span>
             </button>
           </div>
 
@@ -200,17 +201,19 @@ export default function PricingPage() {
 
                 <div className="mb-5">
                   <span className="text-4xl font-bold text-white">
-                    $
-                    {billing === "monthly"
-                      ? plan.monthlyPrice
-                      : plan.annualPrice}
+                    ₹
+                    {formatINR(
+                      billing === "monthly"
+                        ? plan.monthlyPrice
+                        : plan.annualPrice
+                    )}
                   </span>
                   <span className="ml-1 text-sm text-zinc-500">
                     /{billing === "monthly" ? "mo" : "yr"}
                   </span>
                   {billing === "annual" && plan.monthlyPrice > 0 && (
                     <p className="mt-1 text-xs text-emerald-400">
-                      ${plan.monthlyPrice}/mo billed annually
+                      ₹{formatINR(plan.monthlyPrice)}/mo billed annually
                     </p>
                   )}
                 </div>
